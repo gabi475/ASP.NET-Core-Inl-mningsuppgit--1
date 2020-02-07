@@ -10,10 +10,10 @@ namespace FreakyFashion1.Data
     public class ApplicationDbContext : IdentityDbContext
     {
 
-        public DbSet<Product> Product { get; set; }
-        //public DbSet<Category> Category { get; set; }
-        //public DbSet<CategoryProduct> CategoryProduct { get; set; }
-               
+           public DbSet<Product> Product { get; set; }
+        public DbSet<Category> Category { get; set; }
+        public DbSet<ProductCategory> ProductCategory { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -21,44 +21,79 @@ namespace FreakyFashion1.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             base.OnModelCreating(modelBuilder);
 
-            var categoryproducts = new List<CategoryProduct>
+            modelBuilder.Entity<ProductCategory>()
+       .HasKey(bc => new { bc.ProductId, bc.CategoryId });
+            modelBuilder.Entity<ProductCategory>()
+                .HasOne(bc => bc.Product)
+                .WithMany(b => b.ProductCategories)
+                .HasForeignKey(bc => bc.ProductId);
+            modelBuilder.Entity<ProductCategory>()
+                .HasOne(bc => bc.Category)
+                .WithMany(c => c.ProductCategories)
+                .HasForeignKey(bc => bc.CategoryId);
+
+              
+
+            var products = new List<Product>
             {
-                new CategoryProduct(1, "Sko", "Lorem ipsum dolor", 200,
-                    new Uri("https://via.placeholder.com/480x360.png?text=Moonshot", UriKind.Absolute)),
-                new CategoryProduct(2, "Jeans", "Lorem ipsum dolor", 2800,
-                    new Uri("https://via.placeholder.com/480x360.png?text=Mars+Explorer", UriKind.Absolute)),
+                new Product(1, "Dress",  200,
+                    new Uri("https://via.placeholder.com/480x360.png?text=Dress", UriKind.Absolute)),
+                new Product(2, "Jeans", 2300 ,
+                    new Uri("https://via.placeholder.com/480x360.png?text=Jeans", UriKind.Absolute)),
+                 new Product(3, "Sko",  200,
+                    new Uri("https://via.placeholder.com/480x360.png?text=Dress", UriKind.Absolute)),
+                new Product(4, "T-skirt", 2300 ,
+                    new Uri("https://via.placeholder.com/480x360.png?text=Jeans", UriKind.Absolute)),
+                 new Product(5, "Black jacket ",  200,
+                    new Uri("https://via.placeholder.com/480x360.png?text=Dress", UriKind.Absolute)),
+                new Product(6, "Jeans for kid", 2300 ,
+                    new Uri("https://via.placeholder.com/480x360.png?text=Jeans", UriKind.Absolute)),
             };
 
-            categoryproducts.ForEach(x => modelBuilder.Entity<CategoryProduct>().HasData(x));
+            products.ForEach(x => modelBuilder.Entity<Product>().HasData(x));
 
             var categorys = new List<Category>
             {
-                new Category(1, "Hoodie", "Lorem ipsum dolor",
-                    new Uri("https://via.placeholder.com/480x360.png?text=Moon", UriKind.Absolute)),
-                new Category(2, "Jacket", "Lorem ipsum dolor",
-                    new Uri("https://via.placeholder.com/480x360.png?text=Mars", UriKind.Absolute)),
+                new Category(1, " Red Hoodie", "Lorem ipsum dolor",
+                    new Uri("https://via.placeholder.com/480x360.png?text=Hoodie", UriKind.Absolute)),
+                new Category(2, "  Green Jacket","Lorem ipsum dolor",
+                    new Uri("https://via.placeholder.com/480x360.png?text=Jacket", UriKind.Absolute)),
+                  new Category(3, "Hoodie", "Lorem ipsum dolor",
+                    new Uri("https://via.placeholder.com/480x360.png?text=Hoodie", UriKind.Absolute)),
+                new Category(4, "Jacket","Lorem ipsum dolor",
+                    new Uri("https://via.placeholder.com/480x360.png?text=Jacket", UriKind.Absolute)),
+                  new Category(5, "Hoodie", "Lorem ipsum dolor",
+                    new Uri("https://via.placeholder.com/480x360.png?text=Hoodie", UriKind.Absolute)),
+                new Category(6, "Pantd","Lorem ipsum dolor",
+                    new Uri("https://via.placeholder.com/480x360.png?text=Jacket", UriKind.Absolute)),
             };
 
             categorys.ForEach(x => modelBuilder.Entity<Category>().HasData(x));
 
-            var moonshot = categoryproducts.Find(x => x.Name == "Sko");
-            var marsExplorer = categoryproducts.Find(x => x.Name == "Jeans");
+            var moonshot = products.Find(x => x.Name == "Dress");
+            var marsExplorer = products.Find(x => x.Name == "Jeans");
 
             var moon = categorys.Find(x => x.Name == "Hoodie");
             var mars = categorys.Find(x => x.Name == "Jacket");
 
-            var products = new List<Product>
+            var productcategorys = new List<ProductCategory>
             {
-                new Product(1, moon.Id, moonshot.Id, 500),
-                new Product(2, mars.Id, marsExplorer.Id, 1800),
+                new ProductCategory( moon.Id, moonshot.Id),
+                new ProductCategory( mars.Id, marsExplorer.Id),
             };
 
-            products.ForEach(x => modelBuilder.Entity<Product>().HasData(x));
+            productcategorys.ForEach(x => modelBuilder.Entity<ProductCategory>().HasData(x));
         }
     }
 }
+
+
+
+
+
 
 
 

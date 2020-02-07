@@ -44,27 +44,52 @@ namespace FreakyFashion1.Migrations
                         {
                             Id = 1,
                             Description = "Lorem ipsum dolor",
-                            ImageUrl = "https://via.placeholder.com/480x360.png?text=Moon",
-                            Name = "Hoodie"
+                            ImageUrl = "https://via.placeholder.com/480x360.png?text=Hoodie",
+                            Name = " Red Hoodie"
                         },
                         new
                         {
                             Id = 2,
                             Description = "Lorem ipsum dolor",
-                            ImageUrl = "https://via.placeholder.com/480x360.png?text=Mars",
+                            ImageUrl = "https://via.placeholder.com/480x360.png?text=Jacket",
+                            Name = "  Green Jacket"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Lorem ipsum dolor",
+                            ImageUrl = "https://via.placeholder.com/480x360.png?text=Hoodie",
+                            Name = "Hoodie"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "Lorem ipsum dolor",
+                            ImageUrl = "https://via.placeholder.com/480x360.png?text=Jacket",
                             Name = "Jacket"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Description = "Lorem ipsum dolor",
+                            ImageUrl = "https://via.placeholder.com/480x360.png?text=Hoodie",
+                            Name = "Hoodie"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Description = "Lorem ipsum dolor",
+                            ImageUrl = "https://via.placeholder.com/480x360.png?text=Jacket",
+                            Name = "Pantd"
                         });
                 });
 
-            modelBuilder.Entity("FreakyFashion1.Entities.CategoryProduct", b =>
+            modelBuilder.Entity("FreakyFashion1.Entities.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
@@ -77,65 +102,77 @@ namespace FreakyFashion1.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CategoryProduct");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "Lorem ipsum dolor",
-                            ImageUrl = "https://via.placeholder.com/480x360.png?text=Moonshot",
-                            Name = "Sko",
-                            Price = 200
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "Lorem ipsum dolor",
-                            ImageUrl = "https://via.placeholder.com/480x360.png?text=Mars+Explorer",
-                            Name = "Jeans",
-                            Price = 2800
-                        });
-                });
-
-            modelBuilder.Entity("FreakyFashion1.Entities.Product", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CategoryProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("CategoryProductId");
-
                     b.ToTable("Product");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            CategoryId = 1,
-                            CategoryProductId = 1,
-                            Price = 500
+                            ImageUrl = "https://via.placeholder.com/480x360.png?text=Dress",
+                            Name = "Dress",
+                            Price = 200
                         },
                         new
                         {
                             Id = 2,
-                            CategoryId = 2,
-                            CategoryProductId = 2,
-                            Price = 1800
+                            ImageUrl = "https://via.placeholder.com/480x360.png?text=Jeans",
+                            Name = "Jeans",
+                            Price = 2300
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ImageUrl = "https://via.placeholder.com/480x360.png?text=Dress",
+                            Name = "Sko",
+                            Price = 200
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ImageUrl = "https://via.placeholder.com/480x360.png?text=Jeans",
+                            Name = "T-skirt",
+                            Price = 2300
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ImageUrl = "https://via.placeholder.com/480x360.png?text=Dress",
+                            Name = "Black jacket ",
+                            Price = 200
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ImageUrl = "https://via.placeholder.com/480x360.png?text=Jeans",
+                            Name = "Jeans for kid",
+                            Price = 2300
+                        });
+                });
+
+            modelBuilder.Entity("FreakyFashion1.Entities.ProductCategory", b =>
+                {
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductId", "CategoryId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("ProductCategory");
+
+                    b.HasData(
+                        new
+                        {
+                            ProductId = 1,
+                            CategoryId = 3
+                        },
+                        new
+                        {
+                            ProductId = 2,
+                            CategoryId = 4
                         });
                 });
 
@@ -339,17 +376,17 @@ namespace FreakyFashion1.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("FreakyFashion1.Entities.Product", b =>
+            modelBuilder.Entity("FreakyFashion1.Entities.ProductCategory", b =>
                 {
                     b.HasOne("FreakyFashion1.Entities.Category", "Category")
-                        .WithMany()
+                        .WithMany("ProductCategories")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FreakyFashion1.Entities.CategoryProduct", "CategoryProduct")
-                        .WithMany()
-                        .HasForeignKey("CategoryProductId")
+                    b.HasOne("FreakyFashion1.Entities.Product", "Product")
+                        .WithMany("ProductCategories")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

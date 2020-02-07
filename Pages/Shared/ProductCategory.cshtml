@@ -1,0 +1,16 @@
+﻿@page
+@model FreakyFashion1.ProductCategoryModel
+@{
+    ViewData["Title"] = "ProductCategory";
+}
+
+
+<h1>@Model.ProductCategory.Category.Name</h1>
+
+<p>
+    @Model.ProductCategory.Category.Description
+</p>
+
+<img src="@Model.ProductCategory.Category.ImageUrl"
+     alt="@Model.ProductCategory.Category.Name" />
+

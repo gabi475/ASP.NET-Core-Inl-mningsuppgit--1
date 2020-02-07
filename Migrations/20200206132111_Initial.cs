@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FreakyFashion1.Migrations
 {
-    public partial class init : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -62,19 +62,18 @@ namespace FreakyFashion1.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CategoryProduct",
+                name: "Product",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
                     Price = table.Column<int>(nullable: false),
                     ImageUrl = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CategoryProduct", x => x.Id);
+                    table.PrimaryKey("PK_Product", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -184,28 +183,25 @@ namespace FreakyFashion1.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Product",
+                name: "ProductCategory",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
                     CategoryId = table.Column<int>(nullable: false),
-                    CategoryProductId = table.Column<int>(nullable: false),
-                    Price = table.Column<int>(nullable: false)
+                    ProductId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Product", x => x.Id);
+                    table.PrimaryKey("PK_ProductCategory", x => new { x.ProductId, x.CategoryId });
                     table.ForeignKey(
-                        name: "FK_Product_Category_CategoryId",
+                        name: "FK_ProductCategory_Category_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Category",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Product_CategoryProduct_CategoryProductId",
-                        column: x => x.CategoryProductId,
-                        principalTable: "CategoryProduct",
+                        name: "FK_ProductCategory_Product_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Product",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -215,28 +211,36 @@ namespace FreakyFashion1.Migrations
                 columns: new[] { "Id", "Description", "ImageUrl", "Name" },
                 values: new object[,]
                 {
-                    { 1, "Lorem ipsum dolor", "https://via.placeholder.com/480x360.png?text=Moon", "Hoodie" },
-                    { 2, "Lorem ipsum dolor", "https://via.placeholder.com/480x360.png?text=Mars", "Jacket" }
+                    { 1, "Lorem ipsum dolor", "https://via.placeholder.com/480x360.png?text=Hoodie", " Red Hoodie" },
+                    { 2, "Lorem ipsum dolor", "https://via.placeholder.com/480x360.png?text=Jacket", "  Green Jacket" },
+                    { 3, "Lorem ipsum dolor", "https://via.placeholder.com/480x360.png?text=Hoodie", "Hoodie" },
+                    { 4, "Lorem ipsum dolor", "https://via.placeholder.com/480x360.png?text=Jacket", "Jacket" },
+                    { 5, "Lorem ipsum dolor", "https://via.placeholder.com/480x360.png?text=Hoodie", "Hoodie" },
+                    { 6, "Lorem ipsum dolor", "https://via.placeholder.com/480x360.png?text=Jacket", "Pantd" }
                 });
 
             migrationBuilder.InsertData(
-                table: "CategoryProduct",
-                columns: new[] { "Id", "Description", "ImageUrl", "Name", "Price" },
+                table: "Product",
+                columns: new[] { "Id", "ImageUrl", "Name", "Price" },
                 values: new object[,]
                 {
-                    { 1, "Lorem ipsum dolor", "https://via.placeholder.com/480x360.png?text=Moonshot", "Sko", 200 },
-                    { 2, "Lorem ipsum dolor", "https://via.placeholder.com/480x360.png?text=Mars+Explorer", "Jeans", 2800 }
+                    { 1, "https://via.placeholder.com/480x360.png?text=Dress", "Dress", 200 },
+                    { 2, "https://via.placeholder.com/480x360.png?text=Jeans", "Jeans", 2300 },
+                    { 3, "https://via.placeholder.com/480x360.png?text=Dress", "Sko", 200 },
+                    { 4, "https://via.placeholder.com/480x360.png?text=Jeans", "T-skirt", 2300 },
+                    { 5, "https://via.placeholder.com/480x360.png?text=Dress", "Black jacket ", 200 },
+                    { 6, "https://via.placeholder.com/480x360.png?text=Jeans", "Jeans for kid", 2300 }
                 });
 
             migrationBuilder.InsertData(
-                table: "Product",
-                columns: new[] { "Id", "CategoryId", "CategoryProductId", "Price" },
-                values: new object[] { 1, 1, 1, 500 });
+                table: "ProductCategory",
+                columns: new[] { "ProductId", "CategoryId" },
+                values: new object[] { 1, 3 });
 
             migrationBuilder.InsertData(
-                table: "Product",
-                columns: new[] { "Id", "CategoryId", "CategoryProductId", "Price" },
-                values: new object[] { 2, 2, 2, 1800 });
+                table: "ProductCategory",
+                columns: new[] { "ProductId", "CategoryId" },
+                values: new object[] { 2, 4 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -278,14 +282,9 @@ namespace FreakyFashion1.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Product_CategoryId",
-                table: "Product",
+                name: "IX_ProductCategory_CategoryId",
+                table: "ProductCategory",
                 column: "CategoryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Product_CategoryProductId",
-                table: "Product",
-                column: "CategoryProductId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -306,7 +305,7 @@ namespace FreakyFashion1.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Product");
+                name: "ProductCategory");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -318,7 +317,7 @@ namespace FreakyFashion1.Migrations
                 name: "Category");
 
             migrationBuilder.DropTable(
-                name: "CategoryProduct");
+                name: "Product");
         }
     }
 }

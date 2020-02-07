@@ -21,15 +21,27 @@ a {
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
+  color:red;
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
+.icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.hero carousel slide {
+    background-color:darkolivegreen;
 
+}
+#ropa img{
+    border:7px  solid black;
+    color:red;
+}
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 @media (min-width: 768px) {
   html {

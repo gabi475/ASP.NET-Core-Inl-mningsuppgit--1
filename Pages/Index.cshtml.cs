@@ -17,7 +17,11 @@ namespace FreakyFashion1.Pages
         private readonly ILogger<IndexModel> logger;
         private readonly ApplicationDbContext context;
 
-        public IList<Product> ProductList = new List<Product>();
+          public IList<Product> ProductCategoryList = new List<Product>();
+
+      //  public IList<ProductCategory> ProductCategoryList = new List<ProductCategory>();
+
+        public IList<Category> CategoryList { get; set; }
 
         public IndexModel(ApplicationDbContext context, ILogger<IndexModel> logger)
         {
@@ -29,9 +33,15 @@ namespace FreakyFashion1.Pages
         // HTTP GET /index
         public void OnGet()
         {
-            ProductList = context.Product
-                .Include(x => x.Category)
-                .ToList();
+              ProductCategoryList = context.Product
+             .ToList();
+
+             CategoryList = context.Category.ToList();
+
+          //  ProductCategoryList = context.ProductCategory
+           //    .Include(x => x.Category)
+            //   .ToList();
+
         }
     }
 }

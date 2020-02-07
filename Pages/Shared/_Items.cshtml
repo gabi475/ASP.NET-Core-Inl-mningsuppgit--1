@@ -1,0 +1,19 @@
+﻿@model IList<FreakyFashion1.Entities.Category>
+@{
+    ViewData["Title"] = "_Items";
+}
+
+    
+<div id="ropa">
+    <div class="row">
+
+        
+        @foreach (var items in Model)
+        {
+            <div class="col"><img src="https://via.placeholder.com/480x360.png?text=Jacket" /></div>
+        }
+    </div>
+</div>
+
+
+

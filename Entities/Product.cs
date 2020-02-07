@@ -8,43 +8,36 @@ namespace FreakyFashion1.Entities
     public class Product
     {
 
-        public Product(int id, int categoryId, int categoryproductId, int price)
-                       : this(categoryId, categoryproductId, price)
+        public Product(int id, string name, int price, Uri imageUrl)
+              : this(name,  price, imageUrl)
         {
             Id = id;
         }
 
-        public Product(int categoryId, int categoryproductId, int price)
+        public Product(string name, int price,  Uri imageUrl)
         {
-            CategoryId = categoryId;
-            CategoryProductId = categoryproductId;
+            Name = name;
             Price = price;
-
-        }
-
-        public Product(Category category, CategoryProduct categoryproduct, int price)
-        {
-            Category = category;
-            CategoryProduct =categoryproduct;
-            Price = price;
-
-        }
-
-        public Product()
-        {
-
+            ImageUrl = imageUrl;
+            
+            
+            
         }
 
         public int Id { get; protected set; }
-        public Category Category { get; protected set; }
-        public int CategoryId { get; protected set; }
-        public CategoryProduct CategoryProduct { get; protected set; }
-        public int CategoryProductId { get; protected set; }
-        public int Price { get; protected set; }
+        public string Name { get; protected set; }
 
+        
+
+
+
+
+        public int Price { get; protected set; }
+        public Uri ImageUrl { get; protected set; }
+
+        public List<ProductCategory> ProductCategories { get; set; }
     }
 }
-
 
 
 
