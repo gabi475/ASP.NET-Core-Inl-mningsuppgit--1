@@ -26,7 +26,7 @@ namespace FreakyFashion1
         {
 
             ProductCategory = context.ProductCategory
-                .Include(x => x.Category)
+                .Include(x => x.Product)
                   .FirstOrDefault(x => x.Id == id);
 
 
