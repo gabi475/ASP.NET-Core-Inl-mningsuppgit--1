@@ -13,7 +13,7 @@ namespace FreakyFashion1
     public class ProductCategoryModel : PageModel
     {
 
-        private ApplicationDbContext context;
+        public ApplicationDbContext context;
 
         public ProductCategory ProductCategory { get; set; }
 
