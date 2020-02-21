@@ -8,22 +8,23 @@ using Microsoft.EntityFrameworkCore;
 using FreakyFashion1.Data;
 using FreakyFashion1.Entities;
 
-namespace FreakyFashion1.Areas.Admin.Pages.Product
+namespace FreakyFashion1.Areas.Admin.Pages.Category
 {
-    public class IndexModel : PageModel
+    public class IndexModel1 : PageModel
     {
         private readonly FreakyFashion1.Data.ApplicationDbContext _context;
 
-        public IndexModel(FreakyFashion1.Data.ApplicationDbContext context)
+        public IndexModel1(FreakyFashion1.Data.ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public IList<Entities.Product> Product { get;set; }
+        public IList<Entities.Category> Category { get;set; }
 
         public async Task OnGetAsync()
         {
-            Product = await _context.Product.Include(x=> x.ProductCategories).ThenInclude(x=> x.Category).ToListAsync();
+            Category = await _context.Category
+              .Include(x=>x.ProductCategories).ToListAsync();
         }
     }
 }

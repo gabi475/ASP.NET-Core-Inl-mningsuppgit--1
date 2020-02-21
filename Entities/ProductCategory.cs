@@ -7,18 +7,12 @@ namespace FreakyFashion1.Entities
 {
     public class ProductCategory
     {
-
-
-
-
-
-
+                              
         public ProductCategory( int categoryId, int productId)
         {
             
             CategoryId = categoryId;
             ProductId = productId;
-
 
         }
        

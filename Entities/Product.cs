@@ -12,18 +12,19 @@ namespace FreakyFashion1.Entities
 
         }
 
-        public Product(int id, string name, string description, int price, Uri imageUrl)
-              : this(name,  price,description, imageUrl)
+        public Product(int id, string name, string description,string urlSlug, int price, Uri imageUrl)
+              : this(name,  price,description,urlSlug, imageUrl)
         {
             Id = id;
         }
 
-        public Product(string name, int price,string description,  Uri imageUrl)
+        public Product(string name, int price,string description,string urlSlug,  Uri imageUrl)
         {
             Name = name;
             Price = price;
             ImageUrl = imageUrl;
             Description = description;
+            UrlSlug = urlSlug;
             
             
         }
@@ -33,6 +34,10 @@ namespace FreakyFashion1.Entities
         public string Description { get;  set; }
         public int Price { get;  set; }
         public Uri ImageUrl { get;  set; }
+
+         public string UrlSlug { get; set; }
+
+      //  public string Searchstring { get; set; }
 
         public List<ProductCategory> ProductCategories { get; set; }
     }

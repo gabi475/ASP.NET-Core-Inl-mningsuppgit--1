@@ -39,17 +39,17 @@ namespace FreakyFashion1.Data
 
             var products = new List<Product>
             {
-                new Product(1, "Dress", "Lo",300,
+                new Product(1, "Dress", "Lo", "dress",300,
                     new Uri("https://via.placeholder.com/480x360.png?text=Dress", UriKind.Absolute)),
-                new Product(2, "Jeans","xcepteur sint occaecat cupidatat non proident", 2300 ,
+                new Product(2, "Jeans","xcepteur sint occaecat cupidatat non proident", "jeans", 2300 ,
                     new Uri("https://via.placeholder.com/480x360.png?text=Jeans", UriKind.Absolute)),
-                 new Product(3, "Sko","xcepteur sint occaecat cupidatat non proident",  200,
+                 new Product(3, "Sko","xcepteur sint occaecat cupidatat non proident","sko",  200,
                     new Uri("https://via.placeholder.com/480x360.png?text=Dress", UriKind.Absolute)),
-                new Product(4, "T-skirt","rem ipsum dolor sit amet", 2300 ,
+                new Product(4, "T-skirt","rem ipsum dolor sit amet","t-skirt", 2300 ,
                     new Uri("https://via.placeholder.com/480x360.png?text=Jeans", UriKind.Absolute)),
-                 new Product(5, "Black jacket ","Neque porro quisquam",  200,
+                 new Product(5, "Black jacket ","Neque porro quisquam","black jacket",  200,
                     new Uri("https://via.placeholder.com/480x360.png?text=Dress", UriKind.Absolute)),
-                new Product(6, "Jeans for kid"," Ut enim ad minima veniam", 2300 ,
+                new Product(6, "Jeans for kid"," Ut enim ad minima veniam","jeans for kid", 2300 ,
                     new Uri("https://via.placeholder.com/480x360.png?text=Jeans", UriKind.Absolute)),
             };
 
@@ -57,17 +57,17 @@ namespace FreakyFashion1.Data
 
             var categorys = new List<Category>
             {
-                new Category(1, " Red Hoodie", "Lorem ipsum dolor",
+                new Category(1," Red Hoodie",
                     new Uri("https://via.placeholder.com/480x360.png?text=Hoodie", UriKind.Absolute)),
-                new Category(2, "  Green Jacket","Lorem ipsum dolor",
+                new Category(2, "  Green Jacket",
                     new Uri("https://via.placeholder.com/480x360.png?text=Jacket", UriKind.Absolute)),
-                  new Category(3, "Hoodie", "Lorem ipsum dolor",
+                  new Category(3, "Hoodie",
                     new Uri("https://via.placeholder.com/480x360.png?text=Hoodie", UriKind.Absolute)),
-                new Category(4, "Jacket","Lorem ipsum dolor",
+                new Category(4, "Jacket",
                     new Uri("https://via.placeholder.com/480x360.png?text=Jacket", UriKind.Absolute)),
-                  new Category(5, "Hoodie", "Lorem ipsum dolor",
+                  new Category(5, "Hoodie",
                     new Uri("https://via.placeholder.com/480x360.png?text=Hoodie", UriKind.Absolute)),
-                new Category(6, "Pantd","Lorem ipsum dolor",
+                new Category(6, "Suit",
                     new Uri("https://via.placeholder.com/480x360.png?text=Jacket", UriKind.Absolute)),
             };
 

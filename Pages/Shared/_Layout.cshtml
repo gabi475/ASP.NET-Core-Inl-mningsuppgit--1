@@ -9,63 +9,69 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <header style="background-color:blanchedalmond " class="header border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm  ">
             <div class="container">
 
 
-
-                <div class="icon">
-                    <i class="fas fa-shopping-cart"></i>
-                    <i class="fas fa-user"></i>
-
-
-                </div>
-                <a class="navbar-brand" asp-area="" asp-page="/Index"></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-
-
-
-
             </div>
+            <a class="navbar-brand" asp-area="" asp-page="/Index"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
 
 
             <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                 <partial name="_LoginPartial" />
                 <ul class="navbar-nav flex-grow-1">
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-page="/Index">Hem</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-page="/Nyheter">Nyheter</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-page="/Klänningar">Klänningar</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-page="/Nyheter">Blusar</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-page="/Sko"> Sko</a>
+                        
 
-                        <form class="example" >
+                        <a id="Index" href="/">Index</a>
 
-                            <input type="text" placeholder="" name="search">
-                            <button type="submit"><i class="fa fa-search"></i></button>
+                    </li>
+                    <li class="nav-item">
+                        
+                        <a id="Index" href="/venta">Ny</a>
+                    </li>
+                    <li class="nav-item">
+                        
+                        <a id="Index" href="https://localhost:44343/search?SearchString=dress">Dresses</a>
+                    </li>
+                    <li class="nav-item">
+                        
+                        <a id="Index" href="https://localhost:44343/search?SearchString=hoodie">Hoodie</a>
+                    </li>
+                    <li class="nav-item">
+                        
+                        <a id="Index" href="https://localhost:44343/search?SearchString=jacket">Jacket</a>
 
+                        <form class="search" id="searchField" action="/search">
+                            <p>
+                                <i class="fas fa-search"></i><input class="search-field" type="text" name="SearchString">
+                                <a href="javascript:void()" onclick="document.getElementById('searchField').submit();" style="text-decoration: none;"><i style="color: #EEEEEE;" class="fas fa-arrow-right"></i></a>
+                            </p>
                         </form>
 
 
+                        <a class="fas fa-user" a href="/Identity/Account/Register"></a>
 
 
-</ul>
-                    </div>
 
-</nav>
+                        <a class="fas fa-shopping-cart"></a>
+
+
+
+
+
+
+                </ul>
+            </div>
+
+        </nav>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -78,19 +84,20 @@
             &copy; 2020 - FreakyFashion - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
     </footer>
-    
-    
-        
-        
-                                                                                               
 
 
 
-                                                                                                        <script src="~/lib/jquery/dist/jquery.min.js"></script>
-                                                                                                        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-                                                                                                        <script src="~/js/site.js" asp-append-version="true"></script>
 
-                                                                                                       @RenderSection("Scripts", required: false)
+
+
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
+
 

@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace FreakyFashion1.Pages
+namespace FreakyFashion1
 {
     public class IndexModel : PageModel
     {
@@ -17,9 +17,10 @@ namespace FreakyFashion1.Pages
         private readonly ILogger<IndexModel> logger;
         private readonly ApplicationDbContext context;
 
-         public IList<Product> ProductCategoryList = new List<Product>();
+        public IList<Product> ProductCategoryList = new List<Product>();
 
-      //  public IList<ProductCategory> ProductCategoryList = new List<ProductCategory>();
+        
+         //public IList<ProductCategory> ProductCategoryList = new List<ProductCategory>();
 
         public IList<Category> CategoryList { get; set; }
 
@@ -33,19 +34,18 @@ namespace FreakyFashion1.Pages
         // HTTP GET /index
         public void OnGet()
         {
-              ProductCategoryList = context.Product
-            .ToList();
+            ProductCategoryList = context.Product
+          .ToList();
 
-             CategoryList = context.Category.ToList();
+           CategoryList = context.Category.ToList();
 
-          //  ProductCategoryList = context.ProductCategory
-            //  .Include(x => x.Category)
-            //   .ToList();
+          // ProductCategoryList = context.ProductCategory
+           //  .Include(x => x.Category)
+            //  .ToList();
 
         }
     }
 }
-
 
 
 

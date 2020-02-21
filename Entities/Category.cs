@@ -7,26 +7,36 @@ namespace FreakyFashion1.Entities
 {
     public class Category
     {
-      
 
+        public Category()
+        {
 
-        public Category( int id, string name, string description, Uri imageUrl)
+        }
+
+        public Category( int id, string name, Uri imageUrl)
+             : this(name, imageUrl)
         {
             Id = id;
+        }
+
+        public Category( string name, Uri imageUrl)
+        {
             Name = name;
-            Description = description;
-            
+            UrlSlug = name.Trim().ToLower();
+
             ImageUrl = imageUrl;
         }
 
         public int Id { get; protected set; }
-        public string Name { get; protected set; }
+        public string Name { get; set; }
 
         public string Description { get; protected set; }
 
+        public string UrlSlug { get; set; }
+
 
         
-        public Uri ImageUrl { get; protected set; }
+        public Uri ImageUrl { get; set; }
 
         public List<ProductCategory> ProductCategories { get; set; }
     }

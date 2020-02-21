@@ -1,0 +1,57 @@
+﻿@page
+@model FreakyFashion1.Entities.Pages.SearchModel
+@{
+    ViewData["Title"] = "Search";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+
+}
+
+
+
+
+    @foreach (var product in Model.Products)
+        {
+    <a href="/Product/@product.UrlSlug">
+        <div class="col w-100 border border-dark">
+            <div class="row">
+                <div class="col">
+                    @product.Name
+                    <div class="w-100"></div>
+                    @product.Price
+                    
+                </div>
+            </div>
+        </div>
+</a>
+
+@*<div class="card mb-3" style="max-width: 540px;">
+    <div class="row no-gutters">
+        <div class="col-md-4">
+
+
+        </div>
+        <div class="col-md-8">
+            <div class="card-body" a href="/Product/@product.UrlSlug"</div>
+
+            <h5 class="card-title">@product.Name</h5>
+            <p class="card-text">@product.Description</p>
+
+            <p class="card-text"><small class="text-muted">@product.Price</small></p>
+        </div>
+        </div>
+    </div>*@
+
+                }
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+

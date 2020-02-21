@@ -7,31 +7,25 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using FreakyFashion1.Data;
 using FreakyFashion1.Entities;
-using Microsoft.EntityFrameworkCore;
 
 namespace FreakyFashion1
 {
-    public class CreateModel : PageModel
+    public class CreateModel1 : PageModel
     {
         private readonly FreakyFashion1.Data.ApplicationDbContext _context;
 
-        public CreateModel(FreakyFashion1.Data.ApplicationDbContext context)
+        public CreateModel1(FreakyFashion1.Data.ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public  IActionResult OnGet()
+        public IActionResult OnGet()
         {
-            Categories = new SelectList(_context.Category.Include(x => x.ProductCategories).ToList(), nameof(Category.Id), nameof(Category.Name)); 
             return Page();
         }
 
         [BindProperty]
-        public Product Product { get; set; }
-        public SelectList Categories { get; set; }
-        [BindProperty]
-        public int SelectedCategory { get; set; }
-
+        public Category Category { get; set; }
 
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
@@ -41,11 +35,8 @@ namespace FreakyFashion1
             {
                 return Page();
             }
-            ProductCategory prodCategory = new ProductCategory(SelectedCategory, Product.Id);
-            Product.ProductCategories = new List<ProductCategory>();
-            Product.ProductCategories.Add(prodCategory);
-            _context.Product.Add(Product);
 
+            _context.Category.Add(Category);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

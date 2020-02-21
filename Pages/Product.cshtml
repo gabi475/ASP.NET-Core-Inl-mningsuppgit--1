@@ -1,0 +1,30 @@
+﻿@page "{urlSlug}"
+@model FreakyFashion1.Entities.ProductModel
+@{
+    ViewData["Title"] = "Product";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<div class="col"><img src="https://via.placeholder.com/480x360.png?text=Jacket" /></div>
+<div class="col w-100 border border-dark">
+    <div class="row">
+        <div class="col">
+            @Model.Products.Name
+            <div class="w-100"></div>
+
+            @Model.Products.Price
+            @Model.Products.Description
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

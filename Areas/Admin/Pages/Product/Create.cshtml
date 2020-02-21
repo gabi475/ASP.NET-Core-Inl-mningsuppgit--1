@@ -25,13 +25,19 @@
                 <span asp-validation-for="Product.Description" class="text-danger"></span>
             </div>
             @*<div class="form-group">
-                <label class="control-label">Category</label>
-                <input asp-for="Product.Description" class="form-control" />
-                <span asp-validation-for="Product.Description" class="text-danger"></span>
-            </div>*@
+            <label class="control-label">Category</label>
+            <input asp-for="Product.Description" class="form-control" />
+            <span asp-validation-for="Product.Description" class="text-danger"></span>
+        </div>*@
             <div class="form-group">
                 <label asp-for="Product.Price" class="control-label">Price</label>
                 <input asp-for="Product.Price" class="form-control" />
+                <span asp-validation-for="Product.Price" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Product.ProductCategories" class="control-label">Category</label>
+                <select asp-for="SelectedCategory" asp-items="Model.Categories"></select>
                 <span asp-validation-for="Product.Price" class="text-danger"></span>
             </div>
             <div class="form-group">
