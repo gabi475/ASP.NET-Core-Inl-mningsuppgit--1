@@ -7,7 +7,11 @@ namespace FreakyFashion1.Entities
 {
     public class ProductCategory
     {
-                              
+
+        public ProductCategory()
+        {
+
+        }
         public ProductCategory( int categoryId, int productId)
         {
             
@@ -16,12 +20,12 @@ namespace FreakyFashion1.Entities
 
         }
        
-        public Category Category { get; protected set; }
-        public int CategoryId { get; protected set; }
-        public Product Product { get; protected set; }
-        public int ProductId { get; protected set; }
+        public Category Category { get; set ; }
+        public int CategoryId { get;  set; }
+        public Product Product { get;  set; }
+        public int ProductId { get;  set; }
 
-        public int Id { get; protected set; }
+        public int Id { get;  set; }
 
 
     }
