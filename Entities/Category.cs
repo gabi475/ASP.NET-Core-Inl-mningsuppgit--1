@@ -27,10 +27,10 @@ namespace FreakyFashion1.Entities
             ImageUrl = imageUrl;
         }
 
-        public int Id { get; protected set; }
+        public int Id { get;  set; }
         public string Name { get; set; }
 
-        public string Description { get; protected set; }
+        public string Description { get; set; }
 
         public string UrlSlug { get; set; }
 
